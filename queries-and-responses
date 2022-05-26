@@ -1,24 +1,32 @@
+> use Games2use Games2
+switched to db Games2
+
+> db.createCollection("games")
+{ "ok" : 1 }
+
+--------------------------------------------------------------------------------------------------------------
+
 > db.games.insert([
-... {_id: "Factorio", title:"Factorio", genre:["strategy", "sandbox"], developer:"Wube Software LTD", platform:"PC",
+... {title:"Factorio", genre:["strategy", "sandbox"], developer:"Wube Software LTD", platform:"PC",
 ... releaseDate: ISODate("2020-07-14"), rating:{metascore:90, userScore:9.1}},
 ...
-... {_id: "TW3", title:"The Witcher 3", genre:["rpg", "fantasy"], developer:"CD Projekt Red",
+... {title:"The Witcher 3", genre:["rpg", "fantasy"], developer:"CD Projekt Red",
 ... platform:["PC", "PS4", "PS5", "Xbox"], releaseDate: ISODate("2015-05-19"), rating:{metascore:92, userScore:9.2}},
 ...
-... {_id: "DSRemastered", title:"Dark Souls Remastered ", genre:["rpg", "souls-like", "fantasy"], developer:"From Software",
+... {title:"Dark Souls Remastered ", genre:["rpg", "souls-like", "fantasy"], developer:"From Software",
 ... platform:["PC", "PS4", "PS5", "Xbox"], releaseDate: ISODate("2018-05-25"), rating:{metascore:84, userScore:8.0}},
 ...
-... {_id: "Bloodborne", title:"Bloodborne", genre:["rpg", "souls-like", "fantasy"], developer:"From Software",
+... {title:"Bloodborne", genre:["rpg", "souls-like", "fantasy"], developer:"From Software",
 ... platform:["PS4", "PS5"], releaseDate: ISODate("2015-03-25"), rating:{metascore:92, userScore:8.9}},
 ...
-... {_id: "Terraria", title:"Terraria", genre:["sandbox", "platformer"], developer:"Re-Logic",
+... {title:"Terraria", genre:["sandbox", "platformer"], developer:"Re-Logic",
 ... platform:["PC", "Xbox", "PS4", "PS5"], releaseDate: ISODate("2011-05-16"), rating:{metascore:83, userScore:8.7}},
 ...
-... {_id: "Portal", title:"Portal", genre:["Shooter", "Arcade", "Sci-Fi"], developer:"Valve Software",
+... {title:"Portal", genre:["Shooter", "Arcade", "Sci-Fi"], developer:"Valve Software",
 ... platform:["PC", "Xbox"], releaseDate: ISODate("2007-10-10"), rating:{metascore:90, userScore:9.2}},
 ...
-... {_id: "ME1", title:"Mass Effect", genre:["rpg", "Shooter", "Sci-Fi"], developer:"Bioware",
-... platform:["PC", "Xbox", "PS4", "PS5"], releaseDate: ISODate("2008-05-28"), rating:{metascore:89, userScore:8.6}}
+... {title:"Mass Effect", genre:["rpg", "Shooter", "Sci-Fi"], developer:"Bioware",
+... platform:["PC", "Xbox", "PS4", "PS5"], releaseDate: ISODate("2008-05-28"), rating:{metascore:89, userScore:8.6}},
 ... ])
 
 BulkWriteResult({
@@ -32,13 +40,17 @@ BulkWriteResult({
         "upserted" : [ ]
 })
 
+
+> db.createCollection("gamers")
+{ "ok" : 1 }
 > db.gamers.insert([
-... {_id: "gamer1", name: "Sara", age: 20, games: ["TW3", "Terraria", "Portal"]},
-... {_id: "gamer2", name: "Barry", age: 25, games: ["DSRemastered", "ME1"]},
-... {_id: "gamer3", name: "Jane", age: 18, games: ["Bloodborne", "Factorio"]},
-... {_id: "gamer4", name: "Jeff", age: 22, games: ["Portal", "ME1", "Factorio"]},
-... {_id: "gamer5", name: "Lucy", age: 19, games: ["Terraria", "TW3", "DSRemastered"]}
+... {_id: "gamer1", name: "Sara", age: 20, games: [ObjectId('628f5657fc103d84331cdeda')]},
+... {_id: "gamer2", name: "Barry", age: 25, games: [ObjectId('628f5657fc103d84331cdedb')]},
+... {_id: "gamer3", name: "Jane", age: 18, games: [ObjectId('628f5657fc103d84331cdedc')]},
+... {_id: "gamer4", name: "Jeff", age: 22, games: [ObjectId('628f5657fc103d84331cdedd')]},
+... {_id: "gamer5", name: "Lucy", age: 19, games: [ObjectId('628f5657fc103d84331cdede')]}
 ... ])
+
 BulkWriteResult({
         "writeErrors" : [ ],
         "writeConcernErrors" : [ ],
@@ -50,14 +62,13 @@ BulkWriteResult({
         "upserted" : [ ]
 })
 
-
 > db.devs.insert([
-... {_id: "Bioware", name: "Bioware", year: 1995, games: ["ME1"]},
-... {_id: "CDPR", name: "CD Projekt Red", year: 1994, games: ["TW3"]},
-... {_id: "WubeSoftwareLTD", name: "Wube Software LTD", year: 2013, games: ["Factorio"]},
-... {_id: "FromSoftware", name: "From Software", year: 1986, games: ["DSRemastered", "Bloodborne"]},
-... {_id: "Re-Logic", name: "Re-Logic", year: 2011, games: ["Terraria"]},
-... {_id: "Valve", name: "Valve Software", year: 1996, games: ["Portal"]},
+... {_id: "Bioware", name: "Bioware", year: 1995, games: [ObjectId('628f5657fc103d84331cdee0')]},
+... {_id: "CDPR", name: "CD Projekt Red", year: 1994, games: [ObjectId('628f5657fc103d84331cdedb')]},
+... {_id: "WubeSoftwareLTD", name: "Wube Software LTD", year: 2013, games: [ObjectId('628f5657fc103d84331cdeda')]},
+... {_id: "FromSoftware", name: "From Software", year: 1986, games: [ObjectId('628f5657fc103d84331cdedc')]},
+... {_id: "Re-Logic", name: "Re-Logic", year: 2011, games: [ObjectId('628f5657fc103d84331cdede')]},
+... {_id: "Valve", name: "Valve Software", year: 1996, games: [ObjectId('628f5657fc103d84331cdede')]},
 ... ])
 
 BulkWriteResult({
@@ -71,7 +82,7 @@ BulkWriteResult({
         "upserted" : [ ]
 })
 
---------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
 
 > db.games.createIndex({title: 1}, {unique: true})
 {
@@ -81,7 +92,6 @@ BulkWriteResult({
         "ok" : 1
 }
 
-
 > db.devs.createIndex({name: 1}, {unique: true})
 {
         "numIndexesBefore" : 1,
@@ -90,7 +100,6 @@ BulkWriteResult({
         "ok" : 1
 }
 
-
 > db.gamers.createIndex({name: 1}, {unique: true})
 {
         "numIndexesBefore" : 1,
@@ -98,13 +107,6 @@ BulkWriteResult({
         "createdCollectionAutomatically" : false,
         "ok" : 1
 }
-
-
-
-
-
-
-
 
 
 
